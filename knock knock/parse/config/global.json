@@ -1,0 +1,18 @@
+{
+    "applications": {
+        "_default": {
+            "link": "knockknock"
+        }, 
+        "knockknock": {
+            "applicationId": "ps0JcGZd5mCXreRyqL6Swj5bAWR6pKbLXxk0hWRY", 
+            "masterKey": "157VfJVmH9PBIDZp2ZBk4zKMa4WvKLHbk1vL6f9F"
+        }, 
+        "knockknock-dev": {
+            "applicationId": "rTf4qt8nEvHCxbxgBegzioO1gp6EiQ4VfYJJWsmn", 
+            "masterKey": "NB8Vk6GxeRcc673Jsqk0WH6TrQCysQoJuxj3r1vZ"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.16"
+    }
+}

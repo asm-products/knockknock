@@ -1,0 +1,153 @@
+#pragma mark - iOS
+
+#import <objc/runtime.h>
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+
+#pragma mark - Logging
+
+// We use CocoaLumberjack and CrashlyticsLumberjack to log to XCode's debugger
+// and to Crashlytics (last 64KB before a crash).  Thus, we always use verbose level
+// since in an production build there is no XCode to log to and Crashlytics' log
+// is only the last 64KB.
+
+#import "DDLog.h"
+#import <Crashlytics/Crashlytics.h>
+#import <CrashlyticsLumberjack/CrashlyticsLogger.h>
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+
+#pragma mark - Third-party
+
+#import <Parse/Parse.h>
+
+#import <BlocksKit/BlocksKit.h>
+#import <BlocksKit+UIKit.h>
+
+#import "SVProgressHUD.h"
+#import "TestFlight.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "HexColor.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
+
+#pragma mark - Categories
+
+#import "NSError+Parse.h"
+#import "NSString-AppSpecific.h"
+#import "PFUser-AppAdditions.h"
+#import "UIFont+StyleSupport.h"
+#import "UIImage+FixRotation.h"
+#import "UIImage+Thumbnail.h"
+#import "UIView+RectHelpers.h"
+#import "UIViewController+LayoutUtils.h"
+#import "UIColor+AsImage.h"
+#import "UIColor+BrighterDarker.h"
+
+#pragma mark - App Store Metadata
+
+// as per iTunesConnect
+//
+// kAppStorePublicURL: How to reach the app in iTunes from say Facebook
+// kAppStoreReviewURL: How to jump to the app's reviews from within the app
+// kAppStoreInternalURL: How to jump to the app in the App Store app from within the app
+
+#define kAppStoreAppID       @"797120508"
+#define kAppStorePublicURL   @"https://itunes.apple.com/us/app/picture-that/id797120508?ls=1&mt=8"
+#define kAppStoreReviewURL   @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=797120508"
+#define kAppStoreInternalURL @"itms-apps://itunes.apple.com/app/id797120508"
+
+#pragma mark - App Delegate
+
+#import "AppDelegate.h"
+
+#define APP_DELEGATE  ((AppDelegate *)[UIApplication sharedApplication].delegate)
+
+#pragma mark - Local Notifications
+
+extern NSString * const kUserWasRefreshedNotification;
+extern NSString * const kLoginNotification;
+extern NSString * const kLogoutNotification;
+extern NSString * const kSignupNotification;
+
+#pragma mark - Appearance
+
+extern NSString * const kCustomFontName;
+
+extern UIColor *kColorPink;
+extern UIColor *kColorOrange;
+extern UIColor *kColorGray;
+extern UIColor *kColorGreen;
+extern UIColor *kColorYellow;
+extern UIColor *kColorDarkBrown;
+extern UIColor *kColorDarkBlue;
+extern UIColor *kColorBlue;
+extern UIColor *kColorCream;
+
+#pragma mark - Durations
+
+// Finalize a collage the local user initiated after how long?
+extern NSTimeInterval kCollageFinalizedDuration;
+
+// How long does an initiator have to take a photo?
+extern NSTimeInterval kInitiatorTimeout;
+
+// How long does a participant that's accepted a knock/invite have to take a photo?
+extern NSTimeInterval kParticipantTimeout;
+
+// How long does a Parse request get before we consider it timed-out?
+extern NSTimeInterval kNetworkTimeoutDuration;
+
+#pragma mark - Utils
+
+static inline CGRect R(CGFloat x, CGFloat y, CGFloat w, CGFloat h)
+{
+    return CGRectIntegral(CGRectMake(x, y, w, h));
+}
+
+static inline BOOL IsEmpty(id thing)
+{
+    return (thing == nil ||
+            ([thing respondsToSelector:@selector(length)] && [(NSData *)thing length] == 0) ||
+            ([thing respondsToSelector:@selector(count)]  && [(NSArray *)thing count] == 0));
+}
+
+static inline CGFloat TopOffset()
+{
+    CGFloat topOffset = (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) ? 20 : 0;
+    return topOffset;
+}
+
+static inline CGFloat FontSize()
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return 40;
+
+    return 24;
+}
+
+static inline CGFloat IdiomScale()
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
+        return 2;
+
+    return 1;
+}
+
+static inline BOOL dispatchOncePersistent(NSString *prefsKey, void (^aBlock)())
+{
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:prefsKey]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:prefsKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
+        aBlock();
+        return YES;
+    }
+
+    return NO;
+}
+
+

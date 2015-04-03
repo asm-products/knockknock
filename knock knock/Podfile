@@ -1,0 +1,37 @@
+platform :ios, :deployment_target => '6.1'
+
+xcodeproj 'Knock Knock.xcodeproj'
+
+pod 'BlocksKit'
+pod 'FontAwesomeIconFactory'
+pod 'Reachability'
+pod 'Lockbox'
+pod 'CocoaLumberjack'
+pod 'CrashlyticsLumberjack'
+pod 'UIImage-Resize'
+pod 'SVProgressHUD'
+pod 'Parse'
+pod 'SDWebImage'
+pod 'RegexKitLite'
+pod 'HexColors'
+pod 'UIImage-Helpers'
+pod 'GPUImage'
+pod 'MGInstagram'
+pod 'AZColoredNavigationBar', '~> 0.0'
+
+# Acknowledgements
+#
+# https://github.com/CocoaPods/CocoaPods/wiki/Acknowledgements
+#
+# Right-click your project -> New File -> select Resource (under iOS) -> then
+# on the right, Select Settings.bundle template (when creating the file make
+# sure you keep the default file name ‘Settings’)
+
+post_install do |installer|
+  require 'fileutils'
+
+  FileUtils.cp_r('Pods/Pods-Acknowledgements.plist',
+    'Settings.bundle/Acknowledgements.plist',
+    :remove_destination => true)
+end
+

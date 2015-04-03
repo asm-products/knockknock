@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>knockknock</string>
+	<key>CFBundleExecutable</key>
+	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIcons</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>Icon-40</string>
+				<string>Icon-60</string>
+				<string>ios7_spotlight_icon</string>
+				<string>ios7_settings_icon</string>
+				<string>Icon-Small</string>
+				<string>ios7_app_icon_iphone</string>
+				<string>Icon</string>
+			</array>
+		</dict>
+	</dict>
+	<key>CFBundleIcons~ipad</key>
+	<dict>
+		<key>CFBundlePrimaryIcon</key>
+		<dict>
+			<key>CFBundleIconFiles</key>
+			<array>
+				<string>Icon-Small</string>
+				<string>Icon-40</string>
+				<string>Icon-Small-50</string>
+				<string>Icon-76</string>
+				<string>Icon-72</string>
+				<string>Icon</string>
+			</array>
+		</dict>
+	</dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.kellyjustin.knockknock</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>knockknock</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.9</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb206851356169694</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1202</string>
+	<key>FacebookAppID</key>
+	<string>206851356169694</string>
+	<key>FacebookDisplayName</key>
+	<string>knockknock</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Quicksand-Bold.otf
+Quicksand-BoldItalic.otf
+Quicksand-Italic.otf
+Quicksand-Light.otf
+Quicksand-LightItalic.otf
+Quicksand-Regular.otf
+Quicksand_Dash.otf
+</string>
+		<string>Quicksand-BoldItalic.otf</string>
+		<string>Quicksand-Italic.otf</string>
+		<string>Quicksand-Light.otf</string>
+		<string>Quicksand-LightItalic.otf</string>
+		<string>Quicksand-Regular.otf</string>
+	</array>
+	<key>UILaunchImageFile</key>
+	<string>Default</string>
+	<key>UILaunchImageFile~ipad</key>
+	<string>Default</string>
+	<key>UILaunchImages~ipad</key>
+	<array>
+		<dict>
+			<key>UILaunchImageMinimumOSVersion</key>
+			<string>7.0</string>
+			<key>UILaunchImageName</key>
+			<string>ios7_Default-Portrait</string>
+			<key>UILaunchImageOrientation</key>
+			<string>Portrait</string>
+			<key>UILaunchImageSize</key>
+			<string>{768, 1024}</string>
+		</dict>
+	</array>
+	<key>UIPrerenderedIcon</key>
+	<true/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
+</plist>
